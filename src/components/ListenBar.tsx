@@ -64,7 +64,7 @@ export function ListenBar({
   const pct = Math.round(shown * 100)
 
   return (
-    <div className="sticky top-0 z-50 -mx-6 mb-10 border-b border-rule bg-paper/90 px-6 py-3 backdrop-blur">
+    <div className="sticky top-0 z-50 -mx-6 mt-7 border-b border-rule bg-paper/90 px-6 py-3 backdrop-blur">
       <div className="flex items-center gap-4">
         <button
           onClick={onTogglePlay}

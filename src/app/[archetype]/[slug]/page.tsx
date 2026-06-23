@@ -46,7 +46,7 @@ export async function generateMetadata({
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
-      title: `${q.prompt} · Interview Prep`,
+      title: `${q.prompt} · Product Interview QnA`,
       description,
       url,
     },
@@ -90,7 +90,7 @@ export default async function AnswerPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Interview QnA', item: base },
+      { '@type': 'ListItem', position: 1, name: 'Product Interview QnA', item: base },
       {
         '@type': 'ListItem',
         position: 2,
@@ -113,7 +113,7 @@ export default async function AnswerPage({
       <div className="lg:max-w-[46rem]">
         <nav className="mb-10 font-mono text-xs uppercase tracking-wider text-muted">
           <Link href="/" className="hover:text-ink">
-            Interview Prep
+            Product Interview QnA
           </Link>
           <span aria-hidden className="px-2 text-rule">
             /

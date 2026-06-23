@@ -30,7 +30,7 @@ export async function generateMetadata({
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
-      title: `${guide.title} · Interview Prep`,
+      title: `${guide.title} · Product Interview QnA`,
       description: guide.intro,
       url,
     },
@@ -168,7 +168,7 @@ export default async function ReferencePage({
       <main className="mx-auto max-w-[52rem] px-6 py-16 sm:py-24">
       <nav className="mb-10 font-mono text-xs uppercase tracking-wider text-muted">
         <Link href="/" className="hover:text-ink">
-          Interview Prep
+          Product Interview QnA
         </Link>
         <span aria-hidden className="px-2 text-rule">
           /

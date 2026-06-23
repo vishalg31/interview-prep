@@ -41,7 +41,7 @@ export async function generateMetadata({
     alternates: { canonical: url },
     openGraph: {
       type: 'website',
-      title: `${label} interview questions · Interview Prep`,
+      title: `${label} interview questions · Product Interview QnA`,
       description,
       url,
     },
@@ -67,7 +67,7 @@ export default async function ArchetypeListPage({
     <main className="mx-auto max-w-[46rem] px-6 py-16 sm:py-24">
       <nav className="mb-10 font-mono text-xs uppercase tracking-wider text-muted">
         <Link href="/" className="hover:text-ink">
-          Interview Prep
+          Product Interview QnA
         </Link>
         <span aria-hidden className="px-2 text-rule">
           /

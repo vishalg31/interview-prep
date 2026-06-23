@@ -239,17 +239,6 @@ export function AnswerReader({
 
   return (
     <div>
-      {supported && listening && (
-        <ListenBar
-          status={status}
-          progress={progress}
-          label={positionLabel}
-          onTogglePlay={onTogglePlay}
-          onStop={onStop}
-          onSeek={onSeek}
-        />
-      )}
-
       {/* Header content stays at the reading measure, left-aligned. */}
       <div className={READING}>
         {/* The prompt is the hero. The eye lands here first. */}
@@ -265,6 +254,19 @@ export function AnswerReader({
           <p className="mt-3 font-body text-base italic text-muted">
             {question.context}
           </p>
+        )}
+
+        {/* Play bar sits directly above the read/listen toggle, not above the
+            title. Only present in listen mode. */}
+        {supported && listening && (
+          <ListenBar
+            status={status}
+            progress={progress}
+            label={positionLabel}
+            onTogglePlay={onTogglePlay}
+            onStop={onStop}
+            onSeek={onSeek}
+          />
         )}
 
         {supported && (
