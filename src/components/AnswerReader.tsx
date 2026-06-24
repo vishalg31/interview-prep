@@ -95,7 +95,7 @@ export function AnswerReader({
 }) {
   const [mode, setMode] = useState<NarrationMode>('read')
   const [status, setStatus] = useState<NarrationStatus>('idle')
-  const [rate, setRate] = useState(1.5) // brisk default; study listening
+  const [rate, setRate] = useState(1.25) // brisk default; study listening
   const [current, setCurrent] = useState(-1) // highlighted unit, -1 = none
   const [progress, setProgress] = useState(0) // 0..1 across the whole answer
   const [supported, setSupported] = useState(false)

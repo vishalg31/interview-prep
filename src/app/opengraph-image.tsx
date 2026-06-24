@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 // Default social card for the site (landing, list pages, reference, fallback).
-export const alt = 'Product Interview QnA'
+export const alt = 'Product Interview Q&A'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -44,7 +44,7 @@ export default function Image() {
               textTransform: 'uppercase',
             }}
           >
-            Product Interview QnA · by Vishal Builds
+            Product Interview Q&A · by Vishal Builds
           </span>
         </div>
 
@@ -59,7 +59,7 @@ export default function Image() {
               lineHeight: 1.1,
             }}
           >
-            Product Interview QnA
+            Product Interview Q&A
           </span>
           <span style={{ marginTop: 20, fontSize: 30, color: '#75716A' }}>
             Worked PM and strategy answers that show the thinking, not the

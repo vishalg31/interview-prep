@@ -33,24 +33,24 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://interview.vishalbuilds.com'),
   title: {
-    default: 'Product Interview QnA',
-    template: '%s · Product Interview QnA',
+    default: 'Product Interview Q&A',
+    template: '%s · Product Interview Q&A',
   },
   description:
     'A browsable library of fully-worked product and strategy interview answers. Read or listen to staged answers that show the moves a strong candidate makes.',
-  applicationName: 'Product Interview QnA',
+  applicationName: 'Product Interview Q&A',
   openGraph: {
     type: 'website',
-    siteName: 'Product Interview QnA',
+    siteName: 'Product Interview Q&A',
     locale: 'en_US',
     url: '/',
-    title: 'Product Interview QnA',
+    title: 'Product Interview Q&A',
     description:
       'Fully-worked product and strategy interview answers that show the thinking, not the framework.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Product Interview QnA',
+    title: 'Product Interview Q&A',
     description:
       'Fully-worked product and strategy interview answers that show the thinking, not the framework.',
   },

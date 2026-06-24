@@ -30,7 +30,7 @@ export function NavBar() {
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2">
           <span className="font-display text-base font-semibold tracking-tight text-ink">
-            Product Interview QnA
+            Product Interview Q&A
           </span>
           <span
             aria-hidden

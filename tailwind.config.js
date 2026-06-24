@@ -12,24 +12,30 @@ module.exports = {
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
-        // Warm paper, not cream; ink is warm near-black, not pure black.
-        paper: '#FEFEFC',
-        panel: '#F6F4EF',
+        // Blush / rose surface; indigo accent pops as a cool complement.
+        // Warm alts: sand -> paper #FAF6EF, panel #F2ECDF, rule #E7DFCD;
+        // peach -> paper #FCF4ED, panel #F7EADD, rule #EFDDCB;
+        // greige -> paper #F8F6F1, panel #EEEAE1, rule #E4DFD4.
+        // (warm palettes share move.bg #EEEDFB.)
+        paper: '#FBF5F3',
+        panel: '#F5EAE6',
         ink: '#22201C',
         muted: '#75716A',
-        rule: '#E7E3DA',
+        rule: '#ECDDD8',
         // The single accent, spent only on the "move to notice" study layer.
         move: {
           DEFAULT: '#4F46E5',
           ink: '#3730A3',
-          bg: '#F1F1FC',
+          bg: '#EEEDFB',
           border: '#D8D6F6',
         },
-        // The interviewer's voice in a dialogue: a warmer, clearly-tinted block
-        // so it reads as a different person from the candidate's prose.
+        // The interviewer's voice in a dialogue. A cool slate inset against the
+        // warm (blush) paper, so it reads as a different speaker by temperature.
+        // Kept distinct from the lighter move.bg accent layer. (Was warm tan
+        // bg #F1E7D2 / border #D6C195 back when the paper was cream.)
         quote: {
-          bg: '#F1E7D2',
-          border: '#D6C195',
+          bg: '#E8EAF0',
+          border: '#C6CBDA',
         },
       },
       maxWidth: {

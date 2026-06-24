@@ -183,4 +183,187 @@ That is collectively exhaustive, a 20% step has to sit in one of these boxes. No
       'Fix in two horizons: stop the bleeding now, and fix the process that let it happen.',
     ],
   },
+  {
+    slug: 'diagnose-flipkart-return-rate-rise',
+    archetype: 'root-cause',
+    vertical: 'ecommerce',
+    difficulty: 'senior',
+    prompt:
+      'Return rate on Flipkart has gone up. How would you diagnose and improve it?',
+    framework: 'Is-it-real? → mix vs within-segment → reason-code MECE',
+    updatedAt: '2026-06-24',
+    relatedSlugs: ['diagnose-active-seller-drop'],
+    answer: [
+      {
+        heading: 'Clarify the metric and the shape of the rise',
+        body: `A return rate moving is only meaningful once I know exactly what's being counted, so let me pin the definition and the shape before I hypothesise.`,
+        exchanges: [
+          {
+            speaker: 'candidate',
+            text: 'How are we defining return rate: returns initiated or completed returns, over delivered orders, and is it measured by order or by unit?',
+          },
+          {
+            speaker: 'interviewer',
+            text: 'Completed returns over delivered orders, monthly, by order.',
+          },
+          {
+            speaker: 'candidate',
+            text: "So it's realised returns, not just requests, and a per-order rate. Good to know, because a category that ships many units per order could skew a per-unit view but not this one. How big is the move, and was it a sudden step or a gradual climb?",
+          },
+          {
+            speaker: 'interviewer',
+            text: 'It went from about 12% to about 17% over roughly three weeks, then held flat at the higher level.',
+          },
+          {
+            speaker: 'candidate',
+            text: "Five points on a 12% base is a 40% relative jump, that's large. And a step that holds is an event signature, not a slow drift. Seasonality or gradual mix creep would slope; this stepped and stayed. So I'll hunt for something specific that changed in that window, a policy, a category push, a listing or logistics change, rather than a season.",
+          },
+        ],
+        moveToNotice:
+          'Establishing the shape, a step versus a slope, before hypothesising tells me whether to hunt an event or a trend.',
+      },
+      {
+        heading: 'Structure the space before hunting (MECE)',
+        body: `Before I chase the obvious suspect, I'll lay out the whole space so I don't tunnel.
+
+**0. Is the rise even real?** Cheapest to rule out first:
+
+- **Definition / instrumentation:** the return window was extended so more orders become return-eligible, reason codes or the return flow changed, or we started counting differently.
+- **Denominator:** if orders *fell*, the rate rises mechanically even with flat absolute returns.
+- **Mix shift:** order composition tilted toward structurally high-return categories. Fashion returns at 25 to 40%, electronics and BGM far lower, so a shift toward fashion lifts the blended rate on its own.
+- **Seasonality / calendar:** a post-sale return wave (a Big Billion Days hangover), festive returns.
+
+**Then, if it's real,** a return is a gap between what the buyer expected or needed and what they got. Why any return happens is MECE by origin:
+
+1. **Purchase-time expectation gap (listing):** misleading images, wrong size chart, inaccurate specs, inflated reviews, counterfeit → reason codes "not as described", "size/fit", "quality".
+2. **Fulfilment / condition (in transit):** damaged, defective on arrival, wrong item, missing parts, late → "damaged", "wrong item".
+3. **Buyer behaviour:** bracketing (order several sizes, keep one), buyer's remorse or "changed mind", COD refusal at the door, serial or abusive returners, or a new low-intent buyer cohort.
+4. **Policy / external:** a relaxed returns policy (free or extended returns) that changed behaviour, a competitor, or a promo that pulled in deal-seekers.
+
+That is collectively exhaustive: a return is triggered at purchase, in transit, by the buyer, or by a policy or mix change. Now I prune, locate it in time, then segment by reason code, category, buyer cohort, seller and logistics lane.`,
+        moveToNotice:
+          'Naming the exhaustive tree, and "is it real?" first, before chasing the timeline is the senior move. It proves I am being collectively exhaustive, not pattern-matching to the first suspect.',
+      },
+      {
+        heading: 'Locate it in time',
+        body: `I want to pin the rise to a date and see what moved alongside it.`,
+        exchanges: [
+          {
+            speaker: 'candidate',
+            text: 'Can I get weekly return rate across the window, plus a log of what shipped: policy changes, category pushes, sale events, app or listing releases, and any logistics or 3PL change?',
+          },
+          {
+            speaker: 'interviewer',
+            text: 'The step lines up with a free-returns rollout on fashion, we waived return fees and extended the window to 30 days on apparel. A Big Billion Days sale ended about two weeks before the step began. No logistics change.',
+          },
+          {
+            speaker: 'candidate',
+            text: "Free returns on fashion is a strong lead, and it can hurt two ways at once: it grows fashion's share of orders, and it lowers the bar to return within fashion. But the recent sale is a confound I have to separate, correlation in time isn't proof. Prime suspect, still verify.",
+          },
+        ],
+      },
+      {
+        heading: 'Segment to localise it',
+        body: `Before I blame the policy, I want to see exactly which returns rose.`,
+        exchanges: [
+          {
+            speaker: 'candidate',
+            text: 'Can we split the rise by category, by return reason code, new versus existing buyers, COD versus prepaid, seller type and region, and crucially separate how much is fashion’s share rising versus fashion’s own rate rising?',
+          },
+          {
+            speaker: 'interviewer',
+            text: 'Almost entirely fashion. Within fashion the dominant reason code is "size/fit", then "changed mind". Non-fashion is flat. And it is both: fashion’s share of orders rose, and the within-fashion return rate also rose. It concentrates in buyers who used the free-returns option. COD is slightly higher but not the driver.',
+          },
+          {
+            speaker: 'candidate',
+            text: "That localises it cleanly, and it's two effects from one cause. Mix: free returns pulled more fashion orders, and fashion structurally returns more, so the blended rate climbs even if nothing else changed. Within-segment: free returns also changed behaviour inside fashion, bracketing on size and low-friction \"changed mind\" pushing fashion's own rate up. It's not damage and not a logistics lane, it's an expectation-and-behaviour problem in fashion, amplified by policy.",
+          },
+        ],
+        moveToNotice:
+          "I split mix from within-segment, a Simpson's-paradox guard, before accepting the cause. The reason codes then map straight onto the MECE tree.",
+      },
+      {
+        heading: 'The interviewer pushes back',
+        exchanges: [
+          {
+            speaker: 'interviewer',
+            text: "You're pinning this on free returns. But we just ran Big Billion Days, sales always see a return spike afterwards, and fashion always returns more anyway. Why isn't this just the post-sale wave plus normal fashion mix?",
+          },
+          {
+            speaker: 'candidate',
+            text: "Fair challenge, and three independent signals rule that out. One, shape and persistence: a post-sale wave spikes then decays inside the return window, this stepped up and held flat for weeks after the sale window closed, that's a regime change, not a decaying wave. Two, segmentation: the rise is in fashion's own rate, not only its share, a post-sale-plus-mix story would show as mix and across the categories that were actually on sale, but non-fashion is flat and fashion's rate itself moved. Three, timing: the step lands on the free-returns rollout date, not on the sale. Any one could be coincidence; all three lining up isn't. Where I'll give ground is proof, not direction: I'd confirm with a control, fashion sub-categories or regions not yet migrated to free returns. If their rate didn't move, the post-sale and mix story is dead. If it did, I'm wrong and I reopen the tree.",
+          },
+        ],
+        moveToNotice:
+          'Under pressure I marshal three independent signals, shape, segmentation and timing, rather than retreat, then name the single test (a non-migrated control) that would actually falsify the call.',
+      },
+      {
+        heading: 'Hypotheses: hold a short set, do not tunnel',
+        body: `Even with a prime suspect, I'd keep a short hypothesis set:
+
+**Most likely (policy-induced, fits the data):** free returns on fashion both shifted mix toward fashion and, within fashion, lowered the cost of returning, enabling bracketing on size and casual "changed mind". The underlying enabler is weak size/fit guidance, buyers can't get size right first time, so free returns turn that into bracketing.
+
+**Worth ruling out (listing / quality):** if "not as described" or "quality" were also rising, that's a seller-quality or counterfeit problem, not fit. The data says size/fit dominates, so this is secondary, but check.
+
+**Worth ruling out (external / abuse):** serial returners exploiting free returns, or a competitor. The clean within-fashion size/fit signal makes broad abuse unlikely, but a five-point jump earns one look at the repeat-returner tail.`,
+      },
+      {
+        heading: 'How I would confirm before acting',
+        body: `To confirm the leading hypothesis rather than assume it:
+
+- **Reason-code and bracketing funnel:** the size/fit share of fashion returns over time, and a bracketing signal, baskets with two or more sizes of the same style, and the keep-one-return-the-rest rate.
+- **Control cohort:** sub-categories or regions not yet on free returns, compare the rate trend. This is the falsifying test from the pushback.
+- **Buyer conversations and returned-item condition:** are size/fit returns genuine fit misses (bad size charts) or habitual bracketing? Are returned units even resalable?
+- **Boring failure modes:** did a release break or hide size-chart data? Did a reason-code taxonomy change inflate "size/fit"?`,
+      },
+      {
+        heading: 'Fix at the source, and shape the policy',
+        body: `Two horizons, and I'd lead with the durable fix, not a policy clamp.
+
+**Reduce returns at the source (cut the expectation gap).**
+- *Size/fit, the dominant reason:* better size charts, on-model measurements, fit predictors that learn from a buyer's past *kept* sizes, verified fit reviews, and standardised brand sizing. This attacks the biggest reason code directly.
+- *Listing quality:* accurate images and specs, and penalise sellers with high "not as described" return rates.
+
+**Shape behaviour without nuking a buyer-friendly promise.**
+- Free returns very likely lifts fashion conversion and GMV, that's the trade we made on purpose. So I would **not** blanket-reverse it. Instead target the abusive tail: cap free returns per buyer per period, add gentle friction or a fee only for serial returners, and flag bracketing patterns.
+- Make first-time-right good enough that bracketing isn't needed.
+
+**Prevent recurrence.** Never ship a returns-policy change without a return-rate guardrail and a staged rollout, and model the mix and behaviour effect before going wide.
+
+**What I would not do.** I wouldn't just reverse free returns to make the metric look good. Return rate is a means; the goal is profitable, return-adjusted GMV and retention. Killing free returns could cut returns *and* cut fashion conversion and repeat purchase, losing more than it saves.`,
+        moveToNotice:
+          'I attack the expectation gap at the source rather than only the policy, and I refuse to optimise the return-rate number at the expense of GMV and retention.',
+      },
+      {
+        heading: 'Measure the recovery',
+        body: `I'd track the fix in three layers:
+
+- **Leading indicators** (days to weeks): fashion size/fit reason-code share, bracketing rate, first-time-right (kept-on-first-order) rate, and adoption of the new size tools.
+- **Lagging headline** (the outcome): blended return rate easing back toward baseline, *decomposed* into mix versus within-segment so I know which lever worked, plus return-adjusted contribution per fashion order.
+- **Guardrails** (must stay intact): fashion conversion and GMV (didn't kill the goose), returns-experience CSAT, fashion-buyer repeat purchase and retention, reverse-logistics cost, and refund-fraud rate.`,
+      },
+      {
+        heading: 'Risks in the call, and how I would de-risk the fix',
+        body: `Two things could make me wrong, and I'd guard against both:
+
+**The free-returns read could be confounded by the sale.** That's exactly why the control cohort and the mix-versus-within-segment decomposition come *before* any policy change, not after.
+
+**The fix could overcorrect.** Friction or fees on returns can depress fashion conversion and retention, trading a metric win for a GMV loss. So I'd target only the abusive tail, lead with the sizing fixes, treat any return friction as a time-boxed scalpel, and watch the conversion and retention guardrails the whole way.`,
+        moveToNotice:
+          "I name what would prove me wrong, and I check that my own fix doesn't quietly cost more GMV than the returns it saves.",
+      },
+      {
+        heading: 'One-line close',
+        body: `So: the rise is a real five-point step concentrated in fashion, driven by a free-returns rollout that both shifted mix toward fashion and lifted within-fashion size/fit returns through bracketing. I'd confirm it with a non-migrated control cohort and the reason-code funnel, then fix at the source with sizing and listing quality plus targeted friction on the serial-returner tail, rather than killing a policy that lifts GMV, and I'd guard conversion, retention and return-adjusted contribution so I don't win the return-rate metric and lose the business.`,
+      },
+    ],
+    finalNotes: [
+      'Pin the definition and the shape (step vs slope) before hypothesising; a step that holds is an event, not a season.',
+      'Run "is it real?" first, definition, denominator, mix, before assuming behaviour changed.',
+      "Split mix from within-segment (a Simpson's guard); a blended-rate move can be pure composition.",
+      'Map return reason codes onto the MECE tree, they localise the cause fast.',
+      'Under pushback, separate the policy signal from the post-sale wave with shape, segmentation and timing, and name the control cohort that would falsify it.',
+      "Fix the expectation gap at the source; don't optimise return rate by killing a policy that drives GMV and retention.",
+    ],
+  },
 ]

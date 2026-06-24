@@ -24,8 +24,8 @@ export default async function Image({
   const q = getQuestionBySlug(archetype, slug)
   const label = q
     ? ARCHETYPE_LABELS[q.archetype as Archetype]
-    : 'Product Interview QnA'
-  const prompt = q?.prompt ?? 'Product Interview QnA'
+    : 'Product Interview Q&A'
+  const prompt = q?.prompt ?? 'Product Interview Q&A'
 
   return new ImageResponse(
     (
@@ -65,7 +65,7 @@ export default async function Image({
               textTransform: 'uppercase',
             }}
           >
-            {label} · Product Interview QnA
+            {label} · Product Interview Q&A
           </span>
         </div>
 

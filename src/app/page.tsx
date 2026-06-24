@@ -13,7 +13,7 @@ import { ArchetypeNav } from '@/components/ArchetypeNav'
 import { LandingSections } from '@/components/LandingSections'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Product Interview QnA' },
+  title: { absolute: 'Product Interview Q&A' },
   description:
     'A library of fully-worked product and strategy interview answers. Each one structures the problem, reasons out loud, makes real tradeoffs, and holds up under pushback. Read them, or listen.',
   alternates: { canonical: '/' },
@@ -49,12 +49,12 @@ export default function Home() {
           For product &amp; strategy roles
         </p>
         <h1 className="mt-4 font-display text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:text-[2.5rem]">
-          Product Interview QnA
+          Product Interview Q&A
         </h1>
         <p className="mt-5 prose-answer text-muted">
-          A library of fully-worked product and strategy interview answers. Each
-          one structures the problem, reasons out loud, makes real tradeoffs,
-          and holds up under pushback. Read them, or listen.
+          Fully-worked product and strategy interview answers that structure the
+          problem, reason out loud, make real tradeoffs, and hold up under
+          pushback. Read or listen.
         </p>
 
         {soFramework && (
@@ -91,7 +91,7 @@ export default function Home() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: 'Product Interview QnA',
+            name: 'Product Interview Q&A',
             url: 'https://interview.vishalbuilds.com',
             description:
               'A library of fully-worked product and strategy interview answers.',
