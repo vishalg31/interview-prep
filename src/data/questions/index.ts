@@ -71,17 +71,18 @@ export const ARCHETYPE_BLURBS: Record<Archetype, string> = {
     'Candidate-led S&O cases: extract the data, structure with MECE, recommend.',
 }
 
-// Display order for nav, the landing, and list pages.
+// Display order for nav, the landing, and list pages. so-case sits 3rd (right
+// after root-cause) so it doesn't read as an afterthought at the bottom.
 export const ARCHETYPE_ORDER: Archetype[] = [
   'metric-improvement',
   'root-cause',
+  'so-case',
   'product-design',
   'estimation',
   'prioritization',
   'product-critique',
   'strategy',
   'behavioral',
-  'so-case',
 ]
 
 // Populated archetypes, in display order.
@@ -125,6 +126,14 @@ export function getQuestionBySlug(
 
 export function getQuestionsByArchetype(archetype: string): Question[] {
   return questions.filter((q) => q.archetype === archetype)
+}
+
+// Resolve Question.relatedSlugs (slug-only, no archetype) against the full
+// flat list. Silently drops any slug that doesn't resolve.
+export function getQuestionsBySlugs(slugs: string[]): Question[] {
+  return slugs
+    .map((slug) => questions.find((q) => q.slug === slug))
+    .filter((q): q is Question => q !== undefined)
 }
 
 // Every archetype that currently has at least one published answer.

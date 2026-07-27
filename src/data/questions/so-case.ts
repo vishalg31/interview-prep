@@ -8,14 +8,15 @@ import type { Question } from '../types'
 
 export const soCaseQuestions: Question[] = [
   {
-    slug: 'n26-onboarding-completion-decline',
+    slug: 'jupiter-onboarding-completion-decline',
     archetype: 'so-case',
     vertical: 'fintech',
     difficulty: 'standard',
     framework: 'COGS+FI / MECE',
     referenceSlug: 'so-framework',
+    relatedSlugs: ['improve-neobank-onboarding-conversion'],
     prompt:
-      'At N26, our customer onboarding completion rate has been declining. What would you do?',
+      'At Jupiter, our customer onboarding completion rate has been declining. What would you do?',
     updatedAt: '2026-06-22',
     answer: [
       {
@@ -23,7 +24,7 @@ export const soCaseQuestions: Question[] = [
         exchanges: [
           {
             speaker: 'candidate',
-            text: "Before I dive in, let me confirm I understand the objective. You've mentioned that N26's customer onboarding completion rate is declining, so customers who start the process are not finishing it. My goal is to diagnose where and why the drop-off is happening, identify root causes, and propose solutions that are feasible, creative, and cover both short and long term. Is that the right framing, and are we focused on retail customers or business customers?",
+            text: "Before I dive in, let me confirm I understand the objective. You've mentioned that Jupiter's customer onboarding completion rate is declining, so customers who start the process are not finishing it. My goal is to diagnose where and why the drop-off is happening, identify root causes, and propose solutions that are feasible, creative, and cover both short and long term. Is that the right framing, and are we focused on retail customers or business customers?",
             annotation: {
               kind: 'score',
               text: "You've restated the problem, shown you understand the business implication (lost activated users), and asked a smart scope-clarifying question. Most candidates skip this entirely.",
@@ -81,7 +82,7 @@ export const soCaseQuestions: Question[] = [
           },
           {
             speaker: 'interviewer',
-            text: 'Higher drop-off in newer markets, Eastern Europe and LatAm. Mobile and desktop similar. A new KYC vendor was introduced 5 months ago for these markets, with stricter document requirements.',
+            text: 'Higher drop-off in newer markets, Tier 2 and Tier 3 cities. Mobile and desktop similar. A new KYC vendor was introduced 5 months ago for these markets, with stricter document requirements.',
             annotation: {
               kind: 'data',
               text: 'New vendor 5 months ago, decline started 4 months ago. A one-month lag is a timeline correlation. This is almost certainly the smoking gun.',
@@ -170,7 +171,7 @@ Bucket C, recovery: 85% of abandoners never return, and there is almost no recov
         heading: 'Solutions, feasible and creative',
         body: `Bucket B is the priority, so I sequence the fixes from cheapest and fastest outward.
 
-**Immediate, 0 to 2 weeks, near-zero cost: country-specific document guide.** Add a dynamic checklist at KYC entry showing exactly which documents are accepted per country, with inline examples. No backend work, a content and UI change only.
+**Immediate, 0 to 2 weeks, near-zero cost: region-specific document guide.** Add a dynamic checklist at KYC entry showing exactly which documents are accepted per region, with inline examples. No backend work, a content and UI change only.
 
 **Short-term, 2 to 8 weeks, low cost: KYC recovery flow plus save-and-resume.** Trigger a push and email one hour after abandonment, "You're almost there, here's exactly what you need," and let users resume instead of restarting. Recovers an estimated 20% of the 9,000 lost users a month.
 
@@ -184,25 +185,26 @@ Bucket C, recovery: 85% of abandoners never return, and there is almost no recov
 
 - **Leading indicator, week 2: wrong-document submission rate.** Target down 30%. Tells you the guidance fix is working before the completion rate moves.
 - **Primary KPI, month 3: KYC completion rate.** 54% back to 68% in 90 days, about 7,000 additional activations a month.
-- **Long-term health, month 6: new-market onboarding parity.** Eastern Europe and LatAm within 5 points of established markets.
+- **Long-term health, month 6: new-market onboarding parity.** Tier 2 and Tier 3 cities within 5 points of metro markets.
 - **Guardrail, ongoing: KYC fraud rate.** Must not increase, this confirms we have not compromised regulatory integrity.`,
       },
       {
         heading: 'Bottom line',
-        body: `N26's onboarding decline is not a volume problem, 50,000 users still enter monthly. It is process friction at KYC, driven by poor document guidance and a new vendor whose rejection UX causes 85% permanent loss. Add country-specific document guidance this week at near-zero cost, build a recovery flow in month one, renegotiate the vendor SLA by month six. This recovers about 7,000 activations a month and builds a scalable onboarding model for every new market N26 enters.`,
+        body: `Jupiter's onboarding decline is not a volume problem, 50,000 users still enter monthly. It is process friction at KYC, driven by poor document guidance and a new vendor whose rejection UX causes 85% permanent loss. Add region-specific document guidance this week at near-zero cost, build a recovery flow in month one, renegotiate the vendor SLA by month six. This recovers about 7,000 activations a month and builds a scalable onboarding model for every new city segment Jupiter enters.`,
       },
     ],
   },
 
   {
-    slug: 'monzo-revenue-growth-slowdown',
+    slug: 'niyo-revenue-growth-slowdown',
     archetype: 'so-case',
     vertical: 'fintech',
     difficulty: 'standard',
     framework: 'COGS+FI / MECE',
     referenceSlug: 'so-framework',
+    relatedSlugs: ['improve-blinkit-average-order-value'],
     prompt:
-      'Revenue at Monzo has been growing slower than expected this quarter. What would you do?',
+      'Revenue at Niyo has been growing slower than expected this quarter. What would you do?',
     updatedAt: '2026-06-22',
     answer: [
       {
@@ -284,10 +286,10 @@ Bucket C, recovery: 85% of abandoners never return, and there is almost no recov
           },
           {
             speaker: 'interviewer',
-            text: "No direct data on competitor usage. Retention of casual users has dropped 8% quarter on quarter. The competitor's offer has a monthly cap of 500 pounds, above which fees apply.",
+            text: "No direct data on competitor usage. Retention of casual users has dropped 8% quarter on quarter. The competitor's offer has a monthly cap of ₹8,000, above which fees apply.",
             annotation: {
               kind: 'data',
-              text: 'The competitor offer is capped at 500 pounds a month, so heavy users who exceed it are safe. The at-risk segment is casual users doing small FX transactions, a very specific, addressable segment.',
+              text: 'The competitor offer is capped at ₹8,000 a month, so heavy users who exceed it are safe. The at-risk segment is casual users doing small FX transactions, a very specific, addressable segment.',
             },
           },
           {
@@ -300,10 +302,10 @@ Bucket C, recovery: 85% of abandoners never return, and there is almost no recov
           },
           {
             speaker: 'interviewer',
-            text: 'The ARPU decline is about 4 million pounds of revenue loss per quarter. No regulatory constraint on FX pricing. CAC is roughly 5 times the monthly revenue of retaining an existing active user.',
+            text: 'The ARPU decline is about ₹35 crore of revenue loss per quarter. No regulatory constraint on FX pricing. CAC is roughly 5 times the monthly revenue of retaining an existing active user.',
             annotation: {
               kind: 'data',
-              text: '4 million pounds a quarter at stake. Retention is 5 times cheaper than acquisition, so every solution should prioritise retaining the at-risk casual segment over replacing it.',
+              text: '₹35 crore a quarter at stake. Retention is 5 times cheaper than acquisition, so every solution should prioritise retaining the at-risk casual segment over replacing it.',
             },
           },
         ],
@@ -326,11 +328,11 @@ Bucket C, recovery: 85% of abandoners never return, and there is almost no recov
       },
       {
         heading: 'Analysis and root cause',
-        body: `Bucket A, pricing: the competitor offers fee-free FX up to 500 pounds a month. Monzo's free tier has a 1,000-pound fee-free limit, actually more generous. But the competitor's "fee-free" marketing creates a perception problem, casual users do not know our limit is higher. This is a communication and positioning failure, not a pricing failure.
+        body: `Bucket A, pricing: the competitor offers fee-free FX up to ₹8,000 a month. Niyo's free tier has a ₹16,000 fee-free limit, actually more generous. But the competitor's "fee-free" marketing creates a perception problem, casual users do not know our limit is higher. This is a communication and positioning failure, not a pricing failure.
 
 Bucket B, product: no evidence of a feature gap. Heavy users are unaffected, and a real product issue would show across all segments.
 
-Bucket C, retention: 8% quarterly churn of casual users is significant, and with CAC at 5 times monthly retention cost this cohort is worth defending hard. The root cause is perception, casual users think Monzo is more expensive when, for their usage level, it is not.`,
+Bucket C, retention: 8% quarterly churn of casual users is significant, and with CAC at 5 times monthly retention cost this cohort is worth defending hard. The root cause is perception, casual users think Niyo is more expensive when, for their usage level, it is not.`,
         table: {
           headers: ['Root cause', 'Evidence', 'Priority'],
           rows: [
@@ -354,39 +356,39 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
       },
       {
         heading: 'Solutions, feasible and creative',
-        body: `**Immediate, 0 to 2 weeks, near-zero cost: FX allowance visibility campaign.** In-app notification and push to all free-tier users, "Did you know you get 1,000 pounds a month fee-free FX, double what the competitor offers." No product change, a pure communication fix for a perception problem.
+        body: `**Immediate, 0 to 2 weeks, near-zero cost: FX allowance visibility campaign.** In-app notification and push to all free-tier users, "Did you know you get ₹16,000 a month fee-free FX, double what the competitor offers." No product change, a pure communication fix for a perception problem.
 
 **Short-term, 1 to 2 months, low cost: at-risk segment re-engagement.** Identify casual users whose FX frequency dropped more than 50% in the last 8 weeks and trigger a personalised nudge, "You haven't converted in a while, here's your remaining free FX allowance this month." Targets the exact cohort before it fully churns.
 
-**Long-term, 3 to 6 months, medium cost: casual-to-Plus upgrade flow.** Build a clear upgrade journey that shows the value gap between free and Plus at moments of friction, when users approach their FX limit. If 5% of 500,000 casual users upgrade, that is significant incremental revenue at near-zero CAC.
+**Long-term, 3 to 6 months, medium cost: casual-to-Plus upgrade flow.** Build a clear upgrade journey that shows the value gap between free and Plus at moments of friction, when users approach their FX limit. If 5% of 5 lakh casual users upgrade, that is significant incremental revenue at near-zero CAC.
 
-**One creative angle: an FX savings counter.** Show users how much they have saved versus traditional bank rates, "You saved 47 pounds in FX fees this month with Monzo." It turns the pricing advantage into a visible, shareable number that competitors cannot easily replicate, since they do not have the same fee differential. Zero cost, high retention signal.`,
+**One creative angle: an FX savings counter.** Show users how much they have saved versus traditional bank rates, "You saved ₹1,200 in forex fees this month with Niyo." It turns the pricing advantage into a visible, shareable number that competitors cannot easily replicate, since they do not have the same fee differential. Zero cost, high retention signal.`,
       },
       {
         heading: 'Measure success',
         body: `Measured in layers:
 
 - **Leading indicator, week 2: FX transaction frequency for the casual cohort.** Stabilise it within 2 weeks of the campaign, a signal before ARPU moves.
-- **Primary KPI, month 3: ARPU recovery.** Back to baseline, about 4 million pounds a quarter recovered.
+- **Primary KPI, month 3: ARPU recovery.** Back to baseline, about ₹35 crore a quarter recovered.
 - **Long-term health, month 6: casual-user retention rate.** 8% quarterly churn down to below 3%, confirming a structural fix, not just a messaging patch.
 - **Guardrail, ongoing: free-to-paid upgrade rate.** Must not decline, the upgrade path should improve as casual users see value, not feel pushed.`,
       },
       {
         heading: 'Bottom line',
-        body: `Monzo's revenue slowdown is not a product problem or a pricing problem, it is a perception problem. Casual users think Monzo is more expensive than a competitor that is actually offering less. The fix is fast and cheap: communicate the advantage you already have, then build the retention and upgrade mechanics to turn casual users into sticky Plus subscribers. 4 million pounds a quarter is recoverable without a single pricing change.`,
+        body: `Niyo's revenue slowdown is not a product problem or a pricing problem, it is a perception problem. Casual users think Niyo is more expensive than a competitor that is actually offering less. The fix is fast and cheap: communicate the advantage you already have, then build the retention and upgrade mechanics to turn casual users into sticky Plus subscribers. ₹35 crore a quarter is recoverable without a single pricing change.`,
       },
     ],
   },
 
   {
-    slug: 'nubank-cost-optimisation',
+    slug: 'paytm-cost-optimisation',
     archetype: 'so-case',
     vertical: 'fintech',
     difficulty: 'standard',
     framework: 'COGS+FI / MECE',
     referenceSlug: 'so-framework',
     prompt:
-      "Nubank's operational costs have been increasing faster than revenue. How would you approach this?",
+      "Paytm's operational costs have been increasing faster than revenue. How would you approach this?",
     updatedAt: '2026-06-22',
     answer: [
       {
@@ -412,7 +414,7 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
         exchanges: [
           {
             speaker: 'candidate',
-            text: 'Batch 1, scale and timing. What is the current cost-to-revenue ratio versus 12 months ago? Is the increase sudden or gradual? And did anything change in the business at the same time, headcount expansion, new-market entry, a product launch, or a vendor change?',
+            text: 'Batch 1, scale and timing. What is the current cost-to-revenue ratio versus 12 months ago? Is the increase sudden or gradual? And did anything change in the business at the same time, headcount expansion, a new-vertical launch, a product launch, or a vendor change?',
             annotation: {
               kind: 'why',
               text: 'Cost-to-revenue ratio is the clean metric. A business-event correlation points to root cause before any analysis.',
@@ -420,10 +422,10 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
           },
           {
             speaker: 'interviewer',
-            text: 'Cost-to-revenue was 65% a year ago, now 82%. Gradual increase over 9 months. Nubank expanded into 5 new markets and headcount grew 45% in that period.',
+            text: 'Cost-to-revenue was 65% a year ago, now 82%. Gradual increase over 9 months. Paytm launched 5 new business verticals and headcount grew 45% in that period.',
             annotation: {
               kind: 'data',
-              text: '17-point increase, gradual. Two coinciding events: 5 new markets and 45% headcount growth. Both are likely contributors, now decompose which is bigger.',
+              text: '17-point increase, gradual. Two coinciding events: 5 new verticals and 45% headcount growth. Both are likely contributors, now decompose which is bigger.',
             },
           },
           {
@@ -436,15 +438,15 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
           },
           {
             speaker: 'interviewer',
-            text: 'Both are growing but OpEx faster. People costs are the biggest driver, 60% of the total cost base. Customer support costs have doubled. Compliance and legal have grown three times in the new markets.',
+            text: 'Both are growing but OpEx faster. People costs are the biggest driver, 60% of the total cost base. Customer support costs have doubled. Compliance and legal have grown three times in the new verticals.',
             annotation: {
               kind: 'data',
-              text: 'OpEx is primary. People are 60% of the base, support doubled, compliance tripled. New markets brought compliance costs that were not modelled before launch, a classic expansion cost surprise.',
+              text: 'OpEx is primary. People are 60% of the base, support doubled, compliance tripled. New verticals brought compliance costs that were not modelled before launch, a classic expansion cost surprise.',
             },
           },
           {
             speaker: 'candidate',
-            text: 'Batch 3, segmentation. On support costs doubling, is that a higher ticket rate per customer or just more customers? Are tickets disproportionately from new markets or existing ones? And on compliance, are the costs one-time setup or recurring?',
+            text: 'Batch 3, segmentation. On support costs doubling, is that a higher ticket rate per customer or just more customers? Are tickets disproportionately from new verticals or existing ones? And on compliance, are the costs one-time setup or recurring?',
             annotation: {
               kind: 'why',
               text: 'Tickets per customer versus absolute volume tells you product quality versus scale. One-time versus recurring compliance cost changes the solution: you wait out one-time, you fix recurring.',
@@ -452,15 +454,15 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
           },
           {
             speaker: 'interviewer',
-            text: 'Support ticket rate per customer is up 40%, not just volume. New markets drive 65% of the additional tickets. Compliance costs are roughly 40% one-time and 60% recurring, mainly local regulatory reporting.',
+            text: 'Support ticket rate per customer is up 40%, not just volume. New verticals drive 65% of the additional tickets. Compliance costs are roughly 40% one-time and 60% recurring, mainly vertical-specific regulatory reporting.',
             annotation: {
               kind: 'data',
-              text: 'A 40% higher ticket rate is a product or process issue in new markets, not just scale. 60% recurring compliance is a structural cost. These are the two root causes to target.',
+              text: 'A 40% higher ticket rate is a product or process issue in new verticals, not just scale. 60% recurring compliance is a structural cost. These are the two root causes to target.',
             },
           },
           {
             speaker: 'candidate',
-            text: 'Batch 4, unit economics. What is the cost per customer in new markets versus established ones? And do we have a payback-period model for the expansion, how long until each new market is revenue-positive? I want to know if this is investment, temporary, or structural, permanent.',
+            text: 'Batch 4, unit economics. What is the cost per customer in new verticals versus established ones? And do we have a payback-period model for the expansion, how long until each new vertical is revenue-positive? I want to know if this is investment, temporary, or structural, permanent.',
             annotation: {
               kind: 'why',
               text: 'Investment versus structural cost is critical. Investment-phase costs are acceptable and should be time-bounded; structural costs must be engineered down permanently.',
@@ -468,7 +470,7 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
           },
           {
             speaker: 'interviewer',
-            text: 'Cost per customer in new markets is 2.3 times established markets. No formal payback model exists. Expansion was driven by growth targets, not unit economics.',
+            text: 'Cost per customer in new verticals is 2.3 times established ones. No formal payback model exists. Expansion was driven by growth targets, not unit economics.',
             annotation: {
               kind: 'data',
               text: '2.3 times cost per customer is very high, and no payback model means expansion was not properly modelled. This is a strategic process gap as much as a cost problem.',
@@ -476,7 +478,7 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
           },
           {
             speaker: 'candidate',
-            text: 'Batch 5, constraints and impact. Are there constraints on headcount reduction, local employment law or hiring commitments? And what is the cost of not acting, if costs continue at this rate, when does the business hit a margin floor that forces external action?',
+            text: 'Batch 5, constraints and impact. Are there constraints on headcount reduction, employment law or hiring commitments? And what is the cost of not acting, if costs continue at this rate, when does the business hit a margin floor that forces external action?',
             annotation: {
               kind: 'why',
               text: 'Employment-law constraints decide whether headcount reduction is even viable short-term. The cost of inaction frames urgency without being alarmist.',
@@ -494,38 +496,38 @@ Bucket C, retention: 8% quarterly churn of casual users is significant, and with
       },
       {
         heading: 'Structure the problem, MECE',
-        body: `Profit equals revenue minus costs, and revenue is growing, so this is a cost-structure problem. Three buckets. Bucket A, direct delivery costs: cost per customer, support, infrastructure. Bucket B, expansion overhead: compliance, legal, local operations driven by new markets. Bucket C, organisational efficiency: headcount-to-revenue and automation. Buckets B and C are the primary suspects.
+        body: `Profit equals revenue minus costs, and revenue is growing, so this is a cost-structure problem. Three buckets. Bucket A, direct delivery costs: cost per customer, support, infrastructure. Bucket B, expansion overhead: compliance, legal, operations driven by new verticals. Bucket C, organisational efficiency: headcount-to-revenue and automation. Buckets B and C are the primary suspects.
 
 - **A. Direct delivery costs (COGS)**
   - Support ticket rate per customer, a product-quality issue?
   - Infrastructure cost per transaction
 - **B. Expansion overhead** (primary suspect)
   - Compliance and regulatory reporting, 60% recurring
-  - New-market setup costs not yet amortised
-  - No unit-economics model for new markets
+  - New-vertical setup costs not yet amortised
+  - No unit-economics model for new verticals
 - **C. Organisational efficiency** (primary suspect)
   - Headcount grew 45%, faster than revenue
   - Support automation, self-serve deflection rate
-  - Process duplication across markets`,
+  - Process duplication across verticals`,
       },
       {
         heading: 'Analysis and root cause',
-        body: `Bucket A, direct costs: the 40% higher ticket rate in new markets is a product issue, not just volume. New-market users hit more friction, language, document types, local payment methods, and escalate to support. That is a solvable product problem, not a permanent structural cost.
+        body: `Bucket A, direct costs: the 40% higher ticket rate in new verticals is a product issue, not just volume. New-vertical users hit more friction, unfamiliar terms, extra eligibility documentation, and new consent flows, and escalate to support. That is a solvable product problem, not a permanent structural cost.
 
-Bucket B, expansion overhead: compliance is 60% recurring and local regulatory reporting is non-negotiable. But with no payback model, some of these 5 markets may never reach cost-positive at current scale. This is the most important strategic finding, cost was incurred without validating revenue potential.
+Bucket B, expansion overhead: compliance is 60% recurring and vertical-specific regulatory reporting is non-negotiable. But with no payback model, some of these 5 verticals may never reach cost-positive at current scale. This is the most important strategic finding, cost was incurred without validating revenue potential.
 
-Bucket C, organisational efficiency: 45% headcount growth has outpaced revenue, much of it support roles concentrated in new-market operations. A significant share of support volume is deflectable through automation, established markets likely run on lower support-to-customer ratios.`,
+Bucket C, organisational efficiency: 45% headcount growth has outpaced revenue, much of it support roles concentrated in new-vertical operations. A significant share of support volume is deflectable through automation, established verticals likely run on lower support-to-customer ratios.`,
         table: {
           headers: ['Root cause', 'Evidence', 'Priority'],
           rows: [
             [
-              'Product friction in new markets driving a high support rate',
-              '40% higher ticket rate, 65% from new markets',
+              'Product friction in new verticals driving a high support rate',
+              '40% higher ticket rate, 65% from new verticals',
               'Highest',
             ],
             [
               'Expansion without a unit-economics model',
-              '2.3 times cost per customer, no payback period, some markets may be structurally unprofitable',
+              '2.3 times cost per customer, no payback period, some verticals may be structurally unprofitable',
               'Highest',
             ],
             [
@@ -538,26 +540,26 @@ Bucket C, organisational efficiency: 45% headcount growth has outpaced revenue, 
       },
       {
         heading: 'Solutions, feasible and creative',
-        body: `**Immediate, 0 to 4 weeks, low cost: support deflection via self-serve.** Build localised FAQs and in-app guided flows for the top 10 ticket types in new markets, targeting 30% deflection. Each percentage point of deflection cuts the support headcount requirement by about 0.5 FTE at scale.
+        body: `**Immediate, 0 to 4 weeks, low cost: support deflection via self-serve.** Build localised FAQs and in-app guided flows for the top 10 ticket types in new verticals, targeting 30% deflection. Each percentage point of deflection cuts the support headcount requirement by about 0.5 FTE at scale.
 
-**Short-term, 1 to 3 months, zero cost, analytical: new-market unit-economics audit.** Build a payback-period model for each of the 5 markets, identifying which are on a path to unit-economics-positive and which are not. For markets with no viable path, consider pausing active investment while maintaining presence.
+**Short-term, 1 to 3 months, zero cost, analytical: new-vertical unit-economics audit.** Build a payback-period model for each of the 5 verticals, identifying which are on a path to unit-economics-positive and which are not. For verticals with no viable path, consider pausing active investment while maintaining presence.
 
-**Long-term, 3 to 6 months, medium cost: shared services plus compliance automation.** Centralise compliance reporting across new markets into a shared-services function and automate report generation where rules allow. Eliminates duplicated compliance headcount across 5 markets running parallel teams.
+**Long-term, 3 to 6 months, medium cost: shared services plus compliance automation.** Centralise compliance reporting across new verticals into a shared-services function and automate report generation where rules allow. Eliminates duplicated compliance headcount across 5 verticals running parallel teams.
 
-**One creative process fix: a unit-economics gate on future expansion.** Before any new-market launch, require a payback-period model and a cost-per-customer projection against established-market benchmarks. It prevents the problem recurring and costs nothing, it is a process change, not a product change.`,
+**One creative process fix: a unit-economics gate on future expansion.** Before any new-vertical launch, require a payback-period model and a cost-per-customer projection against established-vertical benchmarks. It prevents the problem recurring and costs nothing, it is a process change, not a product change.`,
       },
       {
         heading: 'Measure success',
         body: `Measured in layers:
 
-- **Leading indicator, week 4: support-ticket deflection rate.** 25 to 30% deflection in new markets within 4 weeks of the self-serve launch.
+- **Leading indicator, week 4: support-ticket deflection rate.** 25 to 30% deflection in new verticals within 4 weeks of the self-serve launch.
 - **Primary KPI, month 3: cost-to-revenue ratio.** 82% down to below 72% in 90 days, reversing the trend and buying runway.
 - **Long-term health, month 6: cost per customer, new versus established.** New-market ratio falls from 2.3 times to below 1.5 times established markets.
 - **Guardrail, ongoing: customer-satisfaction score.** Must not decline, cost reduction should not come at the expense of service quality.`,
       },
       {
         heading: 'Bottom line',
-        body: `Nubank's cost problem is not a spending problem, it is an expansion-without-unit-economics problem. Five markets were entered without validating whether they would ever be cost-positive. The immediate fix is support deflection, cheap, fast, and aimed at the highest-cost symptom. The strategic fix is a market-by-market audit plus a permanent unit-economics gate on future expansion. Done right, this reverses the cost-to-revenue trend within 90 days and prevents the same mistake in the next 5 markets.`,
+        body: `Paytm's cost problem is not a spending problem, it is an expansion-without-unit-economics problem. Five business verticals were launched without validating whether they would ever be cost-positive. The immediate fix is support deflection, cheap, fast, and aimed at the highest-cost symptom. The strategic fix is a vertical-by-vertical audit plus a permanent unit-economics gate on future expansion. Done right, this reverses the cost-to-revenue trend within 90 days and prevents the same mistake in the next expansion.`,
       },
     ],
   },

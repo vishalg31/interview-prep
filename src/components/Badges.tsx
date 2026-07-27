@@ -7,6 +7,7 @@ const VERTICAL_LABELS: Record<Vertical, string> = {
   travel: 'Travel',
   'consumer-tech': 'Consumer tech',
   logistics: 'Logistics',
+  healthcare: 'Healthcare',
   generic: 'Generic',
 }
 

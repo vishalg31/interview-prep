@@ -5,6 +5,7 @@ import {
   ARCHETYPE_LABELS,
   getAdjacentQuestions,
   getQuestionBySlug,
+  getQuestionsBySlugs,
   questions,
 } from '@/data/questions'
 import { getReferenceBySlug } from '@/data/reference'
@@ -12,6 +13,7 @@ import { sectionSpeech } from '@/lib/text'
 import { AnswerReader } from '@/components/AnswerReader'
 import { PrevNext } from '@/components/PrevNext'
 import { ReadingProgress } from '@/components/ReadingProgress'
+import { RelatedQuestions } from '@/components/RelatedQuestions'
 import {
   DifficultyBadge,
   FrameworkBadge,
@@ -68,6 +70,8 @@ export default async function AnswerPage({
   const referenceLink = refGuide
     ? { slug: refGuide.slug, title: refGuide.title }
     : undefined
+
+  const related = q.relatedSlugs ? getQuestionsBySlugs(q.relatedSlugs) : []
 
   // QAPage JSON-LD: full answer as the accepted answer (snippets, not stages).
   const answerText = q.answer.map((s) => sectionSpeech(s)).join(' ')
@@ -133,6 +137,8 @@ export default async function AnswerPage({
       <AnswerReader question={q} referenceLink={referenceLink} />
 
       <div className="lg:max-w-[46rem]">
+        <RelatedQuestions items={related} />
+
         <PrevNext
           prev={
             prev

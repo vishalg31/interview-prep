@@ -20,6 +20,7 @@ export type Vertical =
   | 'travel'
   | 'consumer-tech'
   | 'logistics'
+  | 'healthcare'
   | 'generic'
 
 export type Difficulty = 'warmup' | 'standard' | 'senior'

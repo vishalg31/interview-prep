@@ -11,6 +11,7 @@ export const rootCauseQuestions: Question[] = [
     archetype: 'root-cause',
     vertical: 'marketplace',
     difficulty: 'senior',
+    referenceSlug: 'so-framework',
     prompt:
       'Weekly active sellers on our marketplace dropped 20% in a month. Diagnose what is going on.',
     updatedAt: '2026-06-22',
@@ -191,6 +192,7 @@ That is collectively exhaustive, a 20% step has to sit in one of these boxes. No
     prompt:
       'Return rate on Flipkart has gone up. How would you diagnose and improve it?',
     framework: 'Is-it-real? → mix vs within-segment → reason-code MECE',
+    referenceSlug: 'so-framework',
     updatedAt: '2026-06-24',
     relatedSlugs: ['diagnose-active-seller-drop'],
     answer: [

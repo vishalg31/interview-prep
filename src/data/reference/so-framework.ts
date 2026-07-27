@@ -1,14 +1,17 @@
 import type { ReferenceGuide } from '../types'
 
-// Ported from the S&O interview framework guide. Reference content, reused
-// as-is, not rewritten. Rendered on its own page; the S&O cases link to it.
+// Ported from the S&O interview framework guide, then extended into the
+// universal method spine for the whole library (segmentation axis, two-layer
+// MECE, abandon vs reject, conviction under pushback). S&O cases still link
+// here via referenceSlug, but every archetype's canonical answer runs the
+// same spine underneath. Rendered on its own page.
 
 export const soFramework: ReferenceGuide = {
   slug: 'so-framework',
   title: 'S&O Framework',
   intro:
-    'The method behind the S&O cases. Read the cases to learn the pattern; read this the night before to recall it.',
-  updatedAt: '2026-06-22',
+    'The method every archetype in this library runs underneath, the S&O cases just make it explicit. Read the cases to learn the pattern; read this the night before any interview to recall it.',
+  updatedAt: '2026-07-27',
   sections: [
     {
       num: '01',
@@ -33,7 +36,7 @@ export const soFramework: ReferenceGuide = {
         {
           label: 'S',
           title: 'Scale',
-          body: 'How big? Magnitude, percent change, baseline, trend direction, sudden or gradual?',
+          body: 'How big? Magnitude, percent change, baseline, trend direction, sudden or gradual? Sudden means something broke, go diagnose. Gradual or chronic means the easy wins are gone, go optimise instead, these are different archetypes with different playbooks.',
         },
         {
           label: 'F',
@@ -91,6 +94,74 @@ export const soFramework: ReferenceGuide = {
     },
     {
       num: '03',
+      title: 'Decompose, then segment, then MECE the cause',
+      body: 'MECE happens twice, not once.',
+      cards: [
+        {
+          title: '1. Decompose the metric into its equation',
+          body: 'That is section 02, Revenue = Volume x Price, AOV = items x value-per-item, Profit = Revenue minus Costs.',
+        },
+        {
+          title: '2. Segment to find where it concentrates',
+          body: 'What you segment BY has to match the question type, segmenting by the wrong axis hides the answer in an average.',
+        },
+        {
+          title: '3. MECE the causes within that segment',
+          body: 'Once you have localised it to one segment, for example trust vs friction vs value-gap.',
+        },
+      ],
+      table: {
+        headers: ['Question type', 'Segment by', 'Why'],
+        rows: [
+          [
+            'Diagnostic ("why is X dropping")',
+            'Funnel stage, time, or population subset',
+            'Finds where the anomaly concentrates, that is what unlocks the real cause',
+          ],
+          [
+            'Feature / design ("design a feature for X")',
+            'User type or need',
+            'Finds the highest-leverage group to design for',
+          ],
+          [
+            'Growth / strategy ("how do we grow X")',
+            'Channel, geography, or lever type (acquisition vs retention vs monetisation)',
+            'Finds which growth lever actually has room to move',
+          ],
+        ],
+      },
+      callouts: [
+        {
+          label: 'The most common failure',
+          text: 'Decomposing the equation, then jumping straight to causes without segmenting first, and ending up solving for the average instead of the one segment that actually carries the problem.',
+        },
+      ],
+    },
+    {
+      num: '04',
+      title: 'Abandon vs reject: unwilling vs unable',
+      body: 'Once you have localised the leak to one stage or segment, one more cut decides everything: did people leave voluntarily, or were they blocked? The two need opposite fixes, and treating one as the other wastes the whole recommendation.',
+      cards: [
+        {
+          label: 'Unwilling',
+          title: 'Abandoned',
+          body: 'They could have continued but chose not to. A product or motivation problem: reduce friction, build trust, close the value gap.',
+        },
+        {
+          label: 'Unable',
+          title: 'Rejected',
+          body: 'Blocked by a rule, an eligibility check, or a system limit. A policy or ops problem: change the policy, add an exception path, or design around the constraint.',
+        },
+      ],
+      callouts: [
+        {
+          label: 'Why it matters',
+          text: 'Building more trust for a user who was policy-blocked changes nothing. Loosening a policy for a user who simply was not ready invites the wrong kind of risk. Diagnose which one you have before you propose the fix.',
+        },
+      ],
+    },
+    {
+      num: '05',
       title: '35-minute time allocation',
       table: {
         headers: ['Phase', 'Time', 'Note'],
@@ -109,7 +180,7 @@ export const soFramework: ReferenceGuide = {
       },
     },
     {
-      num: '04',
+      num: '06',
       title: 'What is being scored: 6 dimensions',
       body: 'All six must be covered in every answer.',
       table: {
@@ -125,7 +196,7 @@ export const soFramework: ReferenceGuide = {
       },
     },
     {
-      num: '05',
+      num: '07',
       title: 'What fails vs what passes',
       table: {
         headers: ['Fails', 'Passes'],
@@ -154,7 +225,7 @@ export const soFramework: ReferenceGuide = {
       },
     },
     {
-      num: '06',
+      num: '08',
       title: 'Language that signals structured thinking',
       cards: [
         {
@@ -196,7 +267,36 @@ export const soFramework: ReferenceGuide = {
       ],
     },
     {
-      num: '07',
+      num: '09',
+      title: 'Conviction and falsifiability under pushback',
+      body: 'When the interviewer challenges your core bet, the failure mode is folding ("you might be right") or digging in and ignoring the challenge. Every senior answer in this library does the same three things instead.',
+      cards: [
+        {
+          title: '1. Name the competing explanation',
+          body: 'State the alternative view honestly, in its strongest form, do not strawman it.',
+        },
+        {
+          title: '2. Say what result would prove each side right',
+          body: 'Competing explanations should make different, checkable predictions, not just different opinions.',
+        },
+        {
+          title: '3. Name the exact test, and what would change your mind',
+          body: 'One concrete, falsifying result. Conviction plus intellectual honesty is the senior bar, not just conviction.',
+        },
+      ],
+      callouts: [
+        {
+          label: 'What fails',
+          text: '"You might be right" fails. So does repeating your original answer louder.',
+        },
+        {
+          label: 'What passes',
+          text: '"Here is the test that tells us which of us is right, and here is the specific result that would change my mind."',
+        },
+      ],
+    },
+    {
+      num: '10',
       title: 'Quick reference card: read the night before',
       body: 'COGS+FI question checklist, mapped to the five clarifying batches.',
       cards: [
