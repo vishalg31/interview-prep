@@ -368,4 +368,174 @@ If items-per-basket moves but contribution per customer doesn't, the gain was di
       'Close on layered metrics with order frequency and delivery SLA as hard guardrails.',
     ],
   },
+  {
+    slug: 'improve-international-flight-booking-conversion',
+    archetype: 'metric-improvement',
+    vertical: 'travel',
+    difficulty: 'senior',
+    framework: 'Funnel-shape diagnosis (uniform vs. stage-specific drop) + confidence/consideration-cycle decomposition',
+    prompt:
+      "On a flight booking app, international flight booking conversion is low. How would you improve it?",
+    context:
+      'International bookings convert at a meaningfully lower rate than domestic on the same app, despite each funnel stage showing a similar relative drop-off pattern to domestic.',
+    updatedAt: '2026-07-27',
+    answer: [
+      {
+        heading: 'Clarify scope and constraints',
+        body: `Before I reach for a lever, I need to know what's actually wrong and what's off the table.`,
+        exchanges: [
+          {
+            speaker: 'candidate',
+            text: 'Is this a recent regression versus domestic, or has international always converted lower?',
+          },
+          {
+            speaker: 'interviewer',
+            text: "It's a standing gap, at least the last two quarters, not a sudden drop.",
+          },
+          {
+            speaker: 'candidate',
+            text: "Good, so I'm optimising, not diagnosing an incident. Second: what's explicitly off the table, so I don't propose something you'll reject on principle?",
+          },
+          {
+            speaker: 'interviewer',
+            text: "No new app features or redesigned flows. Also no discounting or pricing changes, that's commercial's call, not product's. You're solving with policy, partnerships, ops, and comms only.",
+          },
+          {
+            speaker: 'candidate',
+            text: "That's a real boundary, not a minor one. It rules out both 'redesign the checkout' and 'just discount harder', so the fix has to come from de-risking the decision and capturing the buying window, not from a cheaper ticket or a shorter flow. Last: any corridor split I should know, or treat international as one bucket?",
+          },
+          {
+            speaker: 'interviewer',
+            text: 'Treat it as one aggregate for now. Gulf and US/UK are the biggest volume corridors.',
+          },
+        ],
+        moveToNotice:
+          "I ask what's off the table before proposing anything. Ruling out both engineering changes and pricing changes up front means every idea I generate later has to survive that filter, instead of me pitching something and getting it cut stage by stage.",
+      },
+      {
+        heading: 'Agree the real objective and guardrails',
+        body: `Raw conversion is the wrong target to chase blindly here.`,
+        exchanges: [
+          {
+            speaker: 'candidate',
+            text: 'International fares are expensive and often non-refundable. Do we track cancellations and refunds separately from the booking itself?',
+          },
+          {
+            speaker: 'interviewer',
+            text: 'Yes, refund rate on international is tracked but not tied to how we judge this project today.',
+          },
+          {
+            speaker: 'candidate',
+            text: "It should be. If I push conversion up by getting hesitant users to commit before they're actually sure, I win the metric and lose it back in cancellations and support cost. So the real objective is clean booking rate: bookings that survive to travel date, not raw search-to-booking. Guardrails: cancellation and refund rate, CS cost per booking, and contribution margin, since a couple of the levers I'll propose have a real cost to run.",
+          },
+        ],
+      },
+      {
+        heading: 'Segment to find the actual leak',
+        body: `Now the read that decides everything else: where exactly is international losing people relative to domestic?`,
+        exchanges: [
+          {
+            speaker: 'candidate',
+            text: 'Can I see stage-by-stage drop-off, search → select flight → passenger and document details → payment → confirmation, for international versus domestic? And do we have cross-session data, users who leave and return later to book?',
+          },
+          {
+            speaker: 'interviewer',
+            text: "The drop ratio at each stage is similar to domestic, no single stage bleeds disproportionately more. And yes, cross-session return-to-book rate is meaningfully lower for international; a lot of users who don't convert in one session never come back at all.",
+          },
+          {
+            speaker: 'candidate',
+            text: "That rules out the lazy hypothesis. If one step were broken, forex payment failing, a confusing document field, I'd see a spike at that exact stage relative to domestic. I don't. A funnel that's uniformly scaled down means every stage is losing a bit more of the user, which points to the purchase itself: higher stakes, less familiar, more actively comparison-shopped, and running on a longer, multi-session decision that we're only half-capturing in a single visit.",
+          },
+        ],
+        moveToNotice:
+          "The uniform drop-ratio is the whole diagnosis. A stage-specific spike would send me hunting for a broken step; a uniformly softer funnel says the cause sits above the funnel, in how risky and slow the decision is, not in any one gate.",
+      },
+      {
+        heading: 'Map the levers, product-only',
+        body: `With discounting and app changes both ruled out, I'm left with policy, partnerships, and ops. Three buckets, each aimed at a piece of the uniform softness:
+
+**De-risk the commitment.** A non-refundable, unfamiliar, expensive ticket makes a user hesitate at every stage, not just one. Fix: a free or short reschedule window on international fares, fully transparent all-in pricing so there's no baggage or seat-fee shock at payment, a visa and document guidance checklist bundled at booking, and travel insurance as an opt-in add-on at confirmation.
+
+**Capture the multi-session decision.** This isn't an impulse buy, and the return-to-book data proves we're losing people to a decision that continues elsewhere. Fix: a paid fare-lock, hold a price for 24-48 hours for a small non-refundable fee, buys the comparison-shopper time without discounting, plus an escalating lifecycle reminder sequence (fare-drop alert, save-search nudge, a day-3 and day-7 follow-up) to stay present through the decision instead of losing the user to a fresh competitor search.
+
+**Assisted booking for the highest-hesitation segment.** Multi-city, visa-heavy itineraries carry the most uncertainty. Fix: a dedicated relationship manager or concierge for complex or high-value bookings, a proactive outbound callback for users who reached passenger or document details but didn't pay, and a WhatsApp or call-assisted booking channel for travellers who'd rather be guided than self-serve.`,
+        moveToNotice:
+          "Every lever here is policy, partnership, or ops, never a price cut and never a new app surface. Naming the constraint explicitly is what stops the list from drifting back toward 'redesign the flow' or 'add a discount', the two answers that got ruled out in the first minute.",
+      },
+      {
+        heading: 'The interviewer pushes back',
+        exchanges: [
+          {
+            speaker: 'interviewer',
+            text: "Maybe international conversion is just low because your fares aren't price-competitive against corridor-specialist OTAs, and none of this fixes that.",
+          },
+          {
+            speaker: 'candidate',
+            text: "That's a real alternative, and it makes a different prediction than mine. If it were pure price uncompetitiveness, the biggest relative drop should sit right at the stage where the user sees the price, search results or fare selection, since that's where a worse price gets compared and rejected. Instead the drop is uniform across stages that carry no new price information at all, passenger details, payment. A pure pricing-loss story doesn't explain that. I'd still run one check, benchmark our fares against two or three corridor competitors on the top routes, but that's a commercial-team lever, not mine to pull. If we're within a few percent of parity and the gap persists after my fixes ship, my read holds. If we're meaningfully more expensive, that's a pricing problem and I'd say so rather than keep pushing confidence-building levers at a price problem.",
+          },
+        ],
+        moveToNotice:
+          "I don't fold, and I don't pretend to own a lever that isn't mine. I name the prediction that would distinguish the two explanations, and I'm explicit that if the data points to pricing, the fix moves to a different team, not that I'd keep shipping my levers regardless.",
+      },
+      {
+        heading: "Solutions, ranked, and what I'd deprioritise",
+        body: `Impact against effort, all product-only:
+
+**Do first (policy and content, fastest to ship):**
+1. Transparent all-in pricing disclosure at every stage, no baggage or fee shock at payment.
+2. Free or short reschedule window on international fares.
+3. Escalating lifecycle reminders (fare-drop alert, save-search, day-3/day-7 follow-up) through existing CRM channels.
+
+**Do next (partnership-dependent):**
+4. Paid fare-lock, a small non-refundable fee to hold a price for 24-48 hours.
+5. Visa and document guidance checklist bundled at booking.
+6. Travel insurance as an opt-in add-on at confirmation.
+
+**Later (ops-heavy, highest cost to scale):**
+7. Dedicated relationship manager or concierge for complex or high-value itineraries.
+8. Proactive outbound callback for near-payment drop-offs.
+9. WhatsApp or call-assisted booking for travellers who want a guided flow.
+
+What I'd explicitly **deprioritise**: any discounting or price-matching, it's off the table by constraint, and even if it weren't, it risks the clean-booking-rate guardrail by pulling in price-sensitive bookings that later cancel. I'd also drop redesigning any funnel step, the uniform-drop data already says the funnel isn't broken, so narrowing one stage would fix nothing and burns effort against a constraint that rules it out anyway.`,
+        moveToNotice:
+          "I name the two attractive-but-wrong moves, discount and redesign, and reject both for reasons tied directly back to the data and the stated constraints, not just because I was told not to.",
+      },
+      {
+        heading: 'Sequence and measure',
+        body: `Sequence: policy and content items first, they need no partnerships and ship fastest. Fare-lock and the visa/insurance partnerships next, since they need external tie-ups. Concierge, callback, and assisted booking last, they're the costliest to scale, so I'd restrict them early to the highest-value and most complex bookings rather than roll out broadly.
+
+Measured in three layers:
+
+- **Leading indicators** (move within days): fare-lock adoption rate, reminder-driven return-to-book rate within 14 days, visa-guidance checklist engagement rate.
+- **Lagging headline:** international search-to-booking conversion, and the real north star, clean booking rate (survives to travel date without cancellation or refund).
+- **Guardrails:** cancellation and refund rate, CS cost per booking, contribution margin per booking.
+
+If the leading indicators move but clean booking rate doesn't, the softness wasn't confidence or timing after all, and I'd revisit the pricing-benchmark check before shipping more.`,
+      },
+      {
+        heading: 'Risks, and how I would de-risk',
+        body: `**Fare-lock gets used by people with no intent to book, tying up quoted inventory.** De-risk: a non-refundable lock fee and a short window, so locking has a real cost.
+
+**Concierge and callback don't scale and quietly become expensive.** De-risk: restrict to high-value or multi-city bookings only, and track cost-to-serve per recovered booking, not just recovery volume.
+
+**Lifecycle reminders read as spam past a certain frequency.** De-risk: cap send frequency and watch unsubscribe rate as a hard stop.
+
+**Visa and insurance add-ons introduce a new decision point that could itself add friction.** De-risk: keep both strictly opt-in, and track skip rate to confirm they're not becoming a new drop-off stage of their own.`,
+        moveToNotice:
+          "I pressure-test the ops-heavy levers specifically, since they're the ones most likely to look like a win on paper while quietly not scaling or costing more than they recover.",
+      },
+      {
+        heading: 'One-line close',
+        body: `So: the uniform drop-ratio across every stage rules out a single broken step and points instead to a longer, higher-stakes, more heavily comparison-shopped decision. With discounting and app changes both off the table, I'd de-risk the commitment (reschedule flexibility, transparent pricing, visa and insurance backup) and capture the multi-day decision (fare-lock, lifecycle reminders, assisted booking for the highest-hesitation segment), measured on clean booking rate and contribution margin, not raw conversion.`,
+      },
+    ],
+    finalNotes: [
+      "Clarify whether the gap is chronic or a regression, and pin down what's explicitly off the table, here both app changes and pricing, before proposing fixes.",
+      'Reframe the objective to clean booking rate, not raw conversion, whenever tickets are expensive and non-refundable.',
+      'A uniform drop-ratio across every funnel stage versus a benchmark rules out a single broken step; it points to a longer, higher-stakes, multi-session decision instead.',
+      'When discounting is off-limits, the remaining levers are de-risking the commitment (flexibility, transparency, insurance) and capturing the multi-day decision (fare-lock, lifecycle reminders), never touching price.',
+      "Under a \"maybe it's just price\" pushback, name the prediction that would distinguish the two explanations, and be explicit about which lever sits outside your remit.",
+      'Close on layered metrics: leading engagement signals, the lagging clean-booking-rate headline, and margin/cancellation guardrails.',
+    ],
+  },
 ]
